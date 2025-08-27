@@ -1,56 +1,28 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Platform {
-    private List<Users> users;
-    private List<Courses> courses;
-
-    public Platform() {
-        this.users = new ArrayList<>();
-        this.courses = new ArrayList<>();
-    }
-
-    public void registerUser(Users user) {
-        users.add(user);
-        System.out.println("Registered: " + user);
-    }
-
-    public void createCourse(Courses course) {
-        courses.add(course);
-        System.out.println("Created course: " + course);
-    }
-
-    public void listCourses() {
-        System.out.println("\nAvailable Courses:");
-        for (Courses c : courses) {
-            System.out.println(c);
-        }
-    }
-
     public static void main(String[] args) {
-        Platform platform = new Platform();
-
         // Create users
         Users instructor = new Users(1, "Alice", "alice@mail.com", "pass123", Users.Role.INSTRUCTOR);
-        Users student = new Users(2, "Bob", "bob@mail.com", "pass456", Users.Role.STUDENT);
-
-        platform.registerUser(instructor);
-        platform.registerUser(student);
+        Users student1 = new Users(2, "Bob", "bob@mail.com", "pass456", Users.Role.STUDENT);
+        Users student2 = new Users(3, "Charlie", "charlie@mail.com", "pass789", Users.Role.STUDENT);
 
         // Instructor creates a course
         Courses javaCourse = new Courses(101, "Java Basics", "Learn Java from scratch", instructor);
-        platform.createCourse(javaCourse);
 
-        // Add lesson to course
+        // Add lessons
         Lessons lesson1 = new Lessons(1, "Intro to Java", "Basics of Java", "http://video1.com");
+        Lessons lesson2 = new Lessons(2, "OOP Concepts", "Learn about classes and objects", "http://video2.com");
         javaCourse.addLesson(lesson1);
+        javaCourse.addLesson(lesson2);
 
-        // Student enrolls
-        javaCourse.enrollStudent(student);
+        // Students enroll
+        javaCourse.enrollStudent(student1);
+        javaCourse.enrollStudent(student2);
 
-        // List courses
-        platform.listCourses();
+        // Display details
+        System.out.println(javaCourse);
+        javaCourse.listLessons();
+        javaCourse.listEnrolledStudents();
     }
 }

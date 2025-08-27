@@ -12,4 +12,9 @@ public class Lessons {
         this.content = content;
         this.videoUrl = videoUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Lesson{" + "id=" + lessonId + ", title='" + title + "'}";
+    }
 }

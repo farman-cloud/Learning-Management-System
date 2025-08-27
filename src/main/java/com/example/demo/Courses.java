@@ -30,10 +30,22 @@ public class Courses {
         }
     }
 
-    public String getCourseTitle() {
-        return courseTitle;
+    public void listLessons() {
+        System.out.println("\nLessons in course: " + courseTitle);
+        for (Lessons lesson : lessons) {
+            System.out.println(" - " + lesson);
+        }
     }
-    public List<Lessons> getLessons() {
-        return lessons;
+
+    public void listEnrolledStudents() {
+        System.out.println("\nStudents enrolled in: " + courseTitle);
+        for (Users student : enrolledStudents) {
+            System.out.println(" - " + student.getName());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "id=" + courseId + ", title='" + courseTitle + "', instructor=" + instructor.getName() + "}";
     }
 }
