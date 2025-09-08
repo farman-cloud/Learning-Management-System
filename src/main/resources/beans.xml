@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Explanation of the Fix:
+    The error "element must specify a ref or value" occurred because the Spring XML parser
+    requires every <constructor-arg> tag to have a value or a reference defined *within the XML file*.
+
+    However, our goal is to provide these arguments dynamically from the Java code using
+    context.getBean("beanName", arg1, arg2, ...).
+
+    The correct way to define a bean for this purpose is to simply remove the <constructor-arg> tags.
+    Spring will automatically find the right constructor based on the arguments you provide
+    in the getBean() call at runtime. The bean definition only needs the id, class, and scope.
+    -->
+
+    <!-- User Bean Definition -->
+    <bean id="userBean" class="com.farman.lmsApp.Users" scope="prototype" />
+
+    <!-- Course Bean Definition -->
+    <bean id="courseBean" class="com.farman.lmsApp.Courses" scope="prototype" />
+
+    <!-- Lesson Bean Definition -->
+    <bean id="lessonBean" class="com.farman.lmsApp.Lessons" scope="prototype" />
+
+</beans>
+
